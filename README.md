@@ -75,7 +75,7 @@ Keep this list updated, as we will use these links extensively in a structured m
 - Keras document page that described using [embeddings](https://keras.io/examples/nlp/pretrained_word_embeddings/).
 
 **Information**
-- Codechella's hacker map [document](https://www.notion.so/Codechella-Hacker-Map-1bc32d1fba4547ed98d81cc3ca31dfb3.).
+- Codechella's hacker map [document](https://www.notion.so/Codechella-Hacker-Map-1bc32d1fba4547ed98d81cc3ca31dfb3).
 
 # Is there anything else?
 Is there anything else?
