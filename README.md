@@ -33,13 +33,14 @@ in order to have a project that we are able to present. Please keep it updated a
 modified according to our needs. Details are very important.
 
 **Repository** - the first major todo due November 19/20.
-- [ ] Create github repository.
-- [ ] Add basic README.md with tasks and technologies.
+- [x] Create github repository.
+- [x] Add basic README.md with tasks and technologies.
 - [ ] Find necessary links for the development (ML articles, tutorials, etc).
-- [ ] Agree on goals and deadlines.
-- [ ] Decide on the style of collaboration and split the tasks.
+- [x] Agree on goals and deadlines.
+- [x] Decide on the style of collaboration and split the tasks.
 
 **Data collection** - the second stage of the project. Due November 20/21.
+- [x] Get Twitter API access.
 - [ ] Setup Twitter API authentication.
 - [ ] Send the first request using Python.
 - [ ] Obtain tweets from each account of interest (Trump, AP, NIH, etc.).
@@ -71,6 +72,7 @@ Keep this list updated, as we will use these links extensively in a structured m
 
 **Tutorials**
 - Sentiment analysis on tweets using rnn [blog](https://medium.com/@gabriel.mayers/sentiment-analysis-from-tweets-using-recurrent-neural-networks-ebf6c202b9d5).
+- Keras document page that described using [embeddings](https://keras.io/examples/nlp/pretrained_word_embeddings/).
 
 **Information**
 - Codechella's hacker map [document](https://www.notion.so/Codechella-Hacker-Map-1bc32d1fba4547ed98d81cc3ca31dfb3.).
