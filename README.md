@@ -2,9 +2,9 @@
 Twitter's #Codechella submission for bias detection in tweets using Python and RNNs.
 
 # Overview
-We are a team of 2, working on the Twitter's #Codechella project. Hopefully, we
+We are a team of 2, working on Twitter's #Codechella project. Hopefully, we
 will present a project that works, tackles a problem, and innovative enough to
-be recognized by Twitter Engineers. Good luck to us, huh.
+be recognized by Twitter Engineers. Good luck to us!
 
 # Technologies used (tentative)
 Here is a list of technologies that are going to be utilized in the project:
@@ -20,7 +20,7 @@ Installation directions for future use will be delivered later.
 The following is a brief timeline of our project and the associated tasks that
 we want to accomplish:
 
-1. Repository and infrastructure setup (due November 19/20.)
+1. Repository and infrastructure setup (due November 19/20).
 2. Data collection and filtering (due November 20/21).
 3. Machine learning model and training (due November 21 sharp).
 4. Hosting, website, video, and presentation (due November 22 by 9am EST sharp).
@@ -64,7 +64,7 @@ modified according to our needs. Details are very important.
 Below are the links for the project.
 
 # Resources
-Keep this list updates, as we will use these links extensively in a structured manner.
+Keep this list updated, as we will use these links extensively in a structured manner.
 
 **Research**
 - Political bias detection arxiv [paper](https://arxiv.org/pdf/2010.10652.pdf).
