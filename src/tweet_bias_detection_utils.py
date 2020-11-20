@@ -3,6 +3,7 @@ This file contains utility functions used for the models and the
 project overall. We don't have time to create a full-fledged structure,
 so we will have a couple of main files and a helper file.
 """
+import pandas as pd
 import tweepy
 import re
 import os
@@ -10,7 +11,7 @@ import os
 from config import get_tweepy_config
 from config import get_accounts_of_interest
 
-def get_tweepy_api(conf: dict()) -> tweepy.API:
+def get_tweepy_api(conf: dict()) -> None:
     """
     Returns twitter api wrapper object by using the config object
     provided from a local function storing the api keys. Used for
@@ -20,7 +21,7 @@ def get_tweepy_api(conf: dict()) -> tweepy.API:
     auth.set_access_token(conf['access_token'], conf['access_token_secret'])
     return tweepy.API(auth)
 
-def get_tweets_users() -> None:
+def get_tweets_csv() -> None:
     """
     Creates files for each of the tweets in an appropriate folder. Folder names
     consist of the account name and the weight (label) assigned to it. File
@@ -30,10 +31,8 @@ def get_tweets_users() -> None:
     # Gets api object using custom function with data config.
     api = get_tweepy_api(get_tweepy_config())
     accounts = get_accounts_of_interest()
+    biases_col, tweets_col = list(), list()
     for account, bias in accounts.items():
-        # Makes directory in ../data/.
-        acc_dir = '../data/{0}_{1}'.format(account, bias)
-        os.mkdir(acc_dir)
         # Gets 200 tweets for the username account.
         tweets = api.user_timeline(screen_name=account, count=200,
             include_rts=False)
@@ -41,21 +40,12 @@ def get_tweets_users() -> None:
             clean_tweet_text = re.sub(r'https?:\/\/.*[\r\n]*', '', tweet.text,
                 flags=re.MULTILINE)
             if len(clean_tweet_text) > 49:
-                acc_file_dir = '{0}/{1}_{2}_{3}'.format(acc_dir, account,
-                    tweet.id_str, bias)
-                with open(acc_file_dir, 'w') as f:
-                    f.write(clean_tweet_text)
-
-def show_data_dirs() -> None:
-    """
-    Prints out the folders, the files, and the information about them.
-    Will be used to monitor the quality of the data and the amount of data.
-    """
-    for dirname in sorted(os.listdir('../data/')):
-        dirpath = '../data/' + dirname
-        fnames = os.listdir(dirpath)
-        print("Processing {0}, {1} files found.".format(dirname, len(fnames)))
-        # Other processing procedures should follow.
+                biases_col.append(bias)
+                tweets_col.append(clean_tweet_text)
+    # Create a dataframe using pandas.
+    tweets_dict = dict({'biases': biases_col, 'tweets': tweets_col})
+    tweets_df = pd.DataFrame(data=tweets_dict)
+    tweets_df.to_csv('../data/tweets_biases.csv')
 
 if __name__ == '__main__':
-    show_data_dirs()
+    get_tweets_csv()
