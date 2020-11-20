@@ -69,6 +69,7 @@ Keep this list updated, as we will use these links extensively in a structured m
 
 **Research**
 - Political bias detection arxiv [paper](https://arxiv.org/pdf/2010.10652.pdf).
+- COVID 19 bias and misinformation [paper](https://arxiv.org/pdf/2003.12309.pdf).
 
 **Tutorials**
 - Sentiment analysis on tweets using rnn [blog](https://medium.com/@gabriel.mayers/sentiment-analysis-from-tweets-using-recurrent-neural-networks-ebf6c202b9d5).
