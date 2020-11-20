@@ -130,4 +130,7 @@ dmypy.json
 .pyre/
 
 # Custom files
+config/
 config.py
+credentials.py
+credentials/
