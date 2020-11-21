@@ -6,10 +6,10 @@ will send a request to the machine learning model for prediction.
 from flask import render_template
 from flask import request
 from flask import Flask
+import tensorflow as tf
 import numpy as np
 
 app = Flask(__name__)
-
 @app.route('/')
 def index():
     """
@@ -27,12 +27,12 @@ def bias_detector():
     """
     if request.method == 'GET':
         return render_template('bias-detector.html')
-    else:
-        text = request.args.get('message')
-        model = tf.keras.model.load_model('../../data/saved_model.pb')
+    if request.method == 'POST':
+        text = request.form['message']
+        model = tf.keras.models.load_model('../data', compile=False)
         probability = model.predict([[text]])
         prediction = np.argmax(probability[0])
-        return prediction
+        return text + " (prediction " + str(prediction * 10) + "%)."
 
 @app.route('/about')
 def about():
@@ -42,3 +42,6 @@ def about():
     behind it.
     """
     return render_template('about.html')
+
+if __name__ == '__main__':
+    app.run()
