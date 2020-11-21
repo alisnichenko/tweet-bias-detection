@@ -6,6 +6,7 @@ import pandas as pd
 import numpy as np
 import tensorflow as tf
 from tensorflow import keras
+from tensorflow.keras import layers
 from tensorflow.keras.layers import Embedding
 from tensorflow.keras.layers.experimental.preprocessing import (
     TextVectorization
@@ -50,7 +51,7 @@ def get_model_data(csv_path: str, val_split: int) -> tuple():
     return (train_samples, val_samples, train_labels, val_labels)
 
 def get_embedding_layer(path_words: str, dim: int, tokens: int,
-    seq_len: int) -> Embedding:
+    seq_len: int) -> tuple():
     """
     Returns tf.keras.layers.Embedding layer trained on stanford's glove
     dataset. This layer will be used for the bias detection model.
@@ -110,10 +111,67 @@ def get_embedding_layer(path_words: str, dim: int, tokens: int,
     )
 
     print("[INFO] Built the embedding layer ({0} dim).".format(embedding_dim))
-    return embedding_layer
+    return (embedding_layer, vectorizer)
+
+def get_model(embedding_layer: Embedding, 
+    vectorizer: TextVectorization) -> keras.Model():
+    """
+    Returns a keras model with the following architecture: (...).
+    Model features embedding layer pretrained on glove dataset.
+    Args:
+        embedding_layer: embedding layer using glove dataset.
+    Returns:
+        keras.Model() with simple conv nets.
+    """
+    int_sequences_input = keras.Input(shape=(None,), dtype="int64")
+    embedded_sequences = embedding_layer(int_sequences_input)
+    x = layers.Conv1D(128, 4, activation="relu")(embedded_sequences)
+    x = layers.MaxPooling1D(4)(x)
+    x = layers.Conv1D(128, 4, activation="relu")(x)
+    x = layers.MaxPooling1D(4)(x)
+    x = layers.Conv1D(128, 4, activation="relu")(x)
+    x = layers.GlobalMaxPooling1D()(x)
+    x = layers.Dense(128, activation="relu")(x)
+    x = layers.Dropout(0.5)(x)
+    preds = layers.Dense(10, activation="softmax")(x)
+    model = keras.Model(int_sequences_input, preds)
+
+    # Print model summary in the console.
+    print("[INFO] Model summary displayed below.")
+    print(model.summary())
+    
+    # Train the model.
+    train_samples, val_samples, train_labels, val_labels = get_model_data(
+        '../data/tweets_biases.csv', 0.2)
+    x_train = vectorizer(np.array([[s] for s in train_samples])).numpy()
+    x_val = vectorizer(np.array([[s] for s in val_samples])).numpy()
+    y_train = np.array(train_labels) / 10
+    y_val = np.array(val_labels) / 10
+
+    # Compile the model.
+    model.compile(loss="sparse_categorical_crossentropy", optimizer="Adam",
+        metrics=["acc"])
+    model.fit(x_train, y_train, batch_size=128, epochs=20, validation_data=
+            (x_val, y_val))
+
+    # Export the model.
+    string_input = keras.Input(shape=(1,), dtype="string")
+    x = vectorizer(string_input)
+    predictions = model(x)
+    end_to_end_model = keras.Model(string_input, predictions)
+    
+    # Sample prediction.
+    prob = end_to_end_model.predict(
+        [["Unbelievable move by the senate, it is impressive how quickly they ruin the country."]]
+    )
+    print("Probability for given input is {0}.".format(np.argmax(prob[0])))
+    print("[INFO] Trained the model. Exporting the model.")
+    end_to_end_model.save('../data/')
+
+    return end_to_end_model
 
 if __name__ == '__main__':
-    # Get the pretrained embedding layer with glove.
-    embedding = get_embedding_layer('../data/glove.6B.100d.txt',
+    # Get the model with pretrained embedding layer with glove.
+    embedding, vectorizer = get_embedding_layer('../data/glove.6B.100d.txt',
         100, 20000, 140)
-
+    model = get_model(embedding, vectorizer)
