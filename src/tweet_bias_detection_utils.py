@@ -23,7 +23,9 @@ def get_tweepy_api(conf: dict()) -> None:
 
 def get_tweets_csv(num_tweets: int, len_tweets: int) -> None:
     """
-
+    Writes tweets and biases for given account into a csv; each
+    tweet has specific attributes and characteristics to make it
+    easier to train the model
     """
     # Gets api object using custom function with data config.
     api = get_tweepy_api(get_tweepy_config())
@@ -38,7 +40,8 @@ def get_tweets_csv(num_tweets: int, len_tweets: int) -> None:
             clean_tweet_text = re.sub(r'https?:\/\/.*[\r\n]*', '', tweet.text,
                 flags=re.MULTILINE)
             if len(clean_tweet_text) > len_tweets and acc_count < num_tweets:
-                biases_col.append(bias)
+                sub_bias = bias - 10
+                biases_col.append(sub_bias)
                 tweets_col.append(clean_tweet_text)
                 acc_count += 1
         # Prints some debugging information.
