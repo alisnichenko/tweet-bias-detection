@@ -76,7 +76,7 @@ def get_embedding_layer(path_words: str, dim: int, tokens: int,
 
     # Incorporate glove embeddings.
     embeddings_idx = {}
-    with open(path_words, encoding="utf8") as f:
+    with open(path_words, "r", encoding="utf8") as f:
         for line in f:
             word, coefs = line.split(maxsplit=1)
             coefs = np.fromstring(coefs, "f", sep=" ")
@@ -129,13 +129,13 @@ def get_model(embedding_layer: Embedding,
     """
     int_sequences_input = keras.Input(shape=(None,), dtype="int64")
     embedded_sequences = embedding_layer(int_sequences_input)
-    x = layers.Conv1D(512, 4, activation="relu", kernel_regularizer=tf.keras.regularizers.l2(0.001))(embedded_sequences)
+    x = layers.Conv1D(128, 4, activation="relu", kernel_regularizer=tf.keras.regularizers.l2(0.001))(embedded_sequences)
     x = layers.MaxPooling1D(4)(x)
-    x = layers.Conv1D(512, 4, activation="relu", kernel_regularizer=tf.keras.regularizers.l2(0.001))(x)
+    x = layers.Conv1D(128, 4, activation="relu", kernel_regularizer=tf.keras.regularizers.l2(0.001))(x)
     x = layers.MaxPooling1D(4)(x)
-    x = layers.Conv1D(512, 4, activation="relu", kernel_regularizer=tf.keras.regularizers.l2(0.001))(x)
+    x = layers.Conv1D(128, 4, activation="relu", kernel_regularizer=tf.keras.regularizers.l2(0.001))(x)
     x = layers.GlobalMaxPooling1D()(x)
-    x = layers.Dense(512, activation="relu", kernel_regularizer=tf.keras.regularizers.l2(0.001))(x)
+    x = layers.Dense(128, activation="relu", kernel_regularizer=tf.keras.regularizers.l2(0.001))(x)
     x = layers.Dropout(0.5)(x)
     preds = layers.Dense(10, activation="softmax")(x)
     model = keras.Model(int_sequences_input, preds)
@@ -161,11 +161,14 @@ def get_model(embedding_layer: Embedding,
         decay_rate=1,
         staircase=False)
 
+    # Set early stopping callback
+    callback = tf.keras.callbacks.EarlyStopping(monitor='val_loss', patience=3)
+
     # Compile the model.
     model.compile(loss=tf.keras.losses.sparse_categorical_crossentropy, optimizer=tf.keras.optimizers.Adam(lr_schedule),
                   metrics=["acc"])
     hist = model.fit(x_train, y_train, batch_size=batch_size, epochs=20, validation_data=
-    (x_val, y_val))
+    (x_val, y_val), callbacks=[callback])
 
     # Export the model.
     string_input = keras.Input(shape=(1,), dtype="string")
