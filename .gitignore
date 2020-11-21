@@ -131,4 +131,8 @@ dmypy.json
 
 # Custom files
 credentials.py
+config.py
+configuration.py
 credentials/
+config/
+configuration/
