@@ -4,7 +4,9 @@ The api will serve some html for presentation purposes, and
 will send a request to the machine learning model for prediction.
 """
 from flask import render_template
+from flask import request
 from flask import Flask
+import numpy as np
 
 app = Flask(__name__)
 
@@ -16,14 +18,21 @@ def index():
     """
     return render_template('index.html')
 
-@app.route('/bias-detector')
+@app.route('/bias-detector', methods=['GET', 'POST'])
 def bias_detector():
     """
     Bias detector page that will accept the tweet into a text box and
     then use the pretrained end-to-end model to predict the bias
     percentage.
     """
-    return render_template('bias-detector.html')
+    if request.method == 'GET':
+        return render_template('bias-detector.html')
+    else:
+        text = request.args.get('message')
+        model = tf.keras.model.load_model('../../data/saved_model.pb')
+        probability = model.predict([[text]])
+        prediction = np.argmax(probability[0])
+        return prediction
 
 @app.route('/about')
 def about():
