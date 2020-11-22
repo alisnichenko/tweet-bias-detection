@@ -6,15 +6,19 @@
 <body>
 <div class="container" style="left: 50%; top:50%;">
 	<div class="container__item">
+        {% if message and bias %}
+            <h5 style="text-align: center">" {{ message }} "</h5>
+            <h5 style="text-align: center">{{ bias }}</h5>
+        {% endif %}
 		<form class="form">
 			<h1>#Codechella hack.</h1>
-            <input 
+            <input id="submitField"
                 type="text" 
                 name="message" 
                 class="form__field" 
                 placeholder="Tweet or message..."
             />
-            <button 
+            <button id="submitButton"
                 type="submit" 
                 class="btn btn--primary btn--inside uppercase"
                 formmethod="POST"
