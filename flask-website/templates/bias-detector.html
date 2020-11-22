@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Tweet Bias - Detector</title>
+    <link rel="stylesheet" href="../static/bias-detector.css">
+</head>
+<body>
+    <!-- Main container -->
+    <div class="container" style="left: 50%; top: 50%;">
+        <!-- Navigation Bar -->
+        <nav class="navigation-bar">
+            <a href="/" class="nav-bubble">Home</a>
+            <a href="/about" class="nav-bubble">About</a>
+            <a href="/bias-detector" class="nav-bubble">Bias Detector</a>
+        </nav>
+
+        <div>
+            <!-- Area to show the machine learning bias prediction -->
+            {% if message and bias %}
+                <div class="bias-container">
+                    <h5 style="text-align: center">"{{message}}"</h5>
+                    <h3 style="text-align: center">{{bias}}</h3>
+                </div>
+            {% endif %}
+
+            <!-- Area to show the tweet and machine learning bias prediction -->
+            {% if user_message and user_datetime and user_name and user_handle and user_profile_pic and user_prediction %}
+                <div class="tweet-container">
+                    <div>
+                        <table class="tweet-profile" style="margin-bottom: 2vh">
+                            <tbody>
+                                <tr rowspan="2">
+                                    <td><img src="{{user_profile_pic}}" alt="{{user_name}} profile picture"></td>
+                                    <td><b>{{user_name}}</b> <br> <b>@{{user_handle}}</b></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div style="text-align: left; margin-bottom: 2vh"><b>Date</b>: {{user_datetime}}</div>
+                    <div style="text-align: left; margin-bottom: 2vh"><b>Tweet</b>: {{user_message}}</div>
+                    <h3>{{user_prediction}}</h3>
+                </div>
+            {% endif %}
+
+            <!-- Form that submits the text/tweet -->
+            <form class="form">
+                <h1>Bias Detection</h1>
+
+                <!-- Submit Message and Button -->
+                <div class="input-and-button">
+                    <!-- Show message error if applicable -->
+                    {% if message_error %}
+                        <h3 class="error">{{message_error}}</h3>
+                    {% endif %}
+
+                    <!-- Display message if already inputted -->
+                    {% if message %}
+                    <input id="submitField"
+                        type="text"
+                        name="message"
+                        class="form__field"
+                           value="{{message}}"
+                        placeholder="Enter Message..."
+                    />
+                    {% else %}
+                    <input id="submitField"
+                        type="text"
+                        name="message"
+                        class="form__field"
+                        placeholder="Enter Message..."
+                    />
+                    {% endif  %}
+                    <button id="submitButton"
+                        type="submit"
+                        class="btn btn--primary btn--inside uppercase"
+                        formmethod="POST"
+                    >Check</button>
+                </div>
+                <br>
+                <br>
+
+                <!-- Submit Tweet URL -->
+                <div class="input-and-button">
+                    <!-- Show tweet error if applicable -->
+                    {% if tweet_error %}
+                        <h3 class="error">{{tweet_error}}</h3>
+                    {% endif %}
+
+                    <!-- Display tweet URL if already inputted -->
+                    {% if tweet_url %}
+                    <input id="submitURL"
+                        type="text"
+                        name="tweetURL"
+                        class="form__field"
+                           value="{{tweet_url}}"
+                        placeholder="Enter Tweet URL..."
+                    />
+                    {% else %}
+                    <input id="submitURL"
+                        type="text"
+                        name="tweetURL"
+                        class="form__field"
+                        placeholder="Enter Tweet URL..."
+                    />
+                    {% endif %}
+                    <button id="tweetButton"
+                        type="submit"
+                        class="btn btn--primary btn--inside uppercase"
+                        formmethod="POST"
+                    >Extract</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Footer -->
+        <div class="container__item container__item--bottom">
+            <p>Twitter and ML. Design inspired by <a
+                href="//dribbble.com/shots/2989456-Email-input-field"
+                target="_blank"
+            >Daniel Luca</a>.</p>
+        </div>
+    </div>
+</body>
+</html>

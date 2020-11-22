@@ -129,8 +129,10 @@ dmypy.json
 .pyre/
 
 # Custom files
+.idea/
 credentials.py
 config.py
+flask-website/config.py
 configuration.py
 credentials/
 config/
