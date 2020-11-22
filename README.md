@@ -36,7 +36,7 @@ Here is the almost-universal step-by-step installation guide for testing our pro
 2. Run the flask app. Run from the `flask-website/` directory.
     1. Export flask variable for testing: `export FLASK_APP=flask_app.py`.
     2. Run the flask server: `flask run`.
-    3. Enter the address provided in the browser (usually it's `127.0.0.1`).
+    3. Enter the address provided in the browser (usually it's `127.0.0.1:5000`).
 3. The pages `/about` and `/bias-detector` should be available for testing.
 
 # Resources
