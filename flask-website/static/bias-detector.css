@@ -4,6 +4,10 @@
     font: 1rem "PT Sans", sans-serif;
 }
 
+img {
+	border-radius: 50%;
+}
+
 html,
 body,
 .container {
