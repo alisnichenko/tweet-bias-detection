@@ -1,11 +1,12 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <title>Tweet Bias - Detector</title>
     <link rel="stylesheet" href="../static/bias-detector.css">
 </head>
 <body>
-<div class="container" style="left: 50%; top:50%;">
-	<div class="container__item">
+<div class="bias-container" style="left: 50%; top: 50%;">
+	<div>
         {% if message and bias %}
             <h5 style="text-align: center">" {{ message }} "</h5>
             <h5 style="text-align: center">{{ bias }}</h5>

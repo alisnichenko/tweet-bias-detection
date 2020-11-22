@@ -8,10 +8,12 @@ img {
 	border-radius: 50%;
 }
 
-html,
-body,
 .container {
     height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 a {
@@ -20,13 +22,6 @@ a {
 
 a:hover {
     color: #7f8ff4;
-}
-
-.container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
 }
 
 .uppercase {

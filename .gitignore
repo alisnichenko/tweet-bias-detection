@@ -129,7 +129,7 @@ dmypy.json
 .pyre/
 
 # Custom files
-#.idea/
+.idea/
 credentials.py
 config.py
 configuration.py
