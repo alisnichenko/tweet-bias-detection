@@ -35,31 +35,31 @@ modified according to our needs. Details are very important.
 **Repository** - the first major todo due November 19/20.
 - [x] Create github repository.
 - [x] Add basic README.md with tasks and technologies.
-- [ ] Find necessary links for the development (ML articles, tutorials, etc).
+- [x] Find necessary links for the development (ML articles, tutorials, etc).
 - [x] Agree on goals and deadlines.
 - [x] Decide on the style of collaboration and split the tasks.
 
 **Data collection** - the second stage of the project. Due November 20/21.
 - [x] Get Twitter API access.
-- [ ] Setup Twitter API authentication.
-- [ ] Send the first request using Python.
-- [ ] Obtain tweets from each account of interest (Trump, AP, NIH, etc.).
-- [ ] Assign labels to the obtained tweets and store them together.
-- [ ] Verify the use case for data and filter the data.
+- [x] Setup Twitter API authentication.
+- [x] Send the first request using Python.
+- [x] Obtain tweets from each account of interest (Trump, AP, NIH, etc.).
+- [x] Assign labels to the obtained tweets and store them together.
+- [x] Verify the use case for data and filter the data.
 
 **Machine learning model** - due November 21 sharp.
-- [ ] Find an article that describes the network.
-- [ ] Install pretrained models.
-- [ ] Develop the input format of the model.
-- [ ] Develop the architecture of the model.
+- [x] Find an article that describes the network.
+- [x] Install pretrained models.
+- [x] Develop the input format of the model.
+- [x] Develop the architecture of the model.
 - [ ] Run the first tests on Google Collab or Google Cloud.
-- [ ] Run sample tweets to showcase the results.
+- [x] Run sample tweets to showcase the results.
 
 **Presentation** - due November 22 by 9am.
 - [ ] Create a document with explanations for the submission.
 - [ ] Create a video 3-5 minutes on YouTube for devpost submission.
-- [ ] Setup a quick github page with the demonstration of the tweet bias detection.
-- [ ] Setup a quick flask api with CSS/HTML styling for the service.
+- [x] Setup a quick github page with the demonstration of the tweet bias detection.
+- [x] Setup a quick flask api with CSS/HTML styling for the service.
 - [ ] Win the hackathon.
 
 Below are the links for the project.
