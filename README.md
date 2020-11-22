@@ -3,7 +3,7 @@ Twitter's #Codechella submission for bias detection in tweets using Python and R
 The project was done over the course of 2 days by @alisnichenko and @enbattle.
 
 # Overview
-Twitter and social media are amazing. Misinformation and lack of trust are not. This is why we decided to tackle the problem of bias detection using machine learning, Python programming language, and Twitter API. Introducing Tweet Bias Detection: a tool used to detect bias in tweets and tweet-line messages by analyzing their word structures and assigning them a percentage from 0% to 100%, where 0% is not biased at all and 100% is extremely biased. We hope that this prototype will show some potential in application of this topic and will interest someone like Twitter in incorporating our idea into their products.
+Twitter and social media are amazing. Misinformation and lack of trust are not. This is why we decided to tackle the problem of bias detection using machine learning, Python programming language, and Twitter API. Introducing Tweet Bias Detection: a tool used to detect bias in tweets and tweet-like messages by analyzing their word structures and assigning them a percentage from 0% to 100%, where 0% is not biased at all and 100% is extremely biased. We hope that this prototype will show some potential in application of this topic and will interest someone like Twitter in incorporating our idea into their products.
 
 # Technologies used
 Here is a list of technologies that were utilized in the project:
