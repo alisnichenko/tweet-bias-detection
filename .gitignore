@@ -132,6 +132,7 @@ dmypy.json
 .idea/
 credentials.py
 config.py
+flask-website/config.py
 configuration.py
 credentials/
 config/

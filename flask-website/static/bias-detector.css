@@ -1,13 +1,17 @@
+/* Root CSS for the entirety of the pages */
 :root {
     background: #f5f6fa;
     color: #9c9c9c;
     font: 1rem "PT Sans", sans-serif;
 }
 
+
+/* Profile images' */
 img {
 	border-radius: 50%;
 }
 
+/* Overall container */
 .container {
     height: 100%;
     display: flex;
@@ -16,12 +20,17 @@ img {
     justify-content: center;
 }
 
+/* Navigation Bar */
 .navigation-bar {
-    position: fixed;
-    left: 20%;
-    top: 50%;
+    margin-top: 2vh;
+    margin-bottom: 10vh;
 }
 
+.nav-bubble {
+    margin: 1vw 1vw 1vw 1vw;
+}
+
+/* Anchor tags */
 a {
     color: inherit;
 }
@@ -30,10 +39,12 @@ a:hover {
     color: #7f8ff4;
 }
 
+/* Set uppercase */
 .uppercase {
     text-transform: uppercase;
 }
 
+/* Button styling */
 .btn {
     display: inline-block;
     background: transparent;
@@ -67,6 +78,18 @@ a:hover {
     margin-left: -96px;
 }
 
+/* Form and input styling */
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.input-and-button {
+    display; inline;
+}
+
 .form__field {
     width: 720px;
     background: #fff;
@@ -77,3 +100,53 @@ a:hover {
     outline: 0;
     padding: 22px 18px;
 }
+
+/* Individualized container css for bias box and tweet box */
+.bias-container {
+    border: 1px solid black;
+    margin-right: 30%;
+    margin-left: 30%;
+    margin-bottom: 10vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    color: #a3a3a3;
+    font: inherit;
+    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.1);
+    border: 0;
+    outline: 0;
+    padding: 22px 18px;
+}
+
+.tweet-container {
+    border: 1px solid black;
+    margin-right: 30%;
+    margin-left: 30%;
+    margin-bottom: 10vh;
+    background: #fff;
+    color: #a3a3a3;
+    font: inherit;
+    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.1);
+    border: 0;
+    outline: 0;
+    padding: 22px 18px;
+}
+
+.tweet-profile {
+    border: 1px solid black;
+    background: #1DA1F2;
+    color: #fff;
+    font: inherit;
+    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.1);
+    border: 0;
+    outline: 0;
+    padding: 22px 18px;
+}
+
+/* Error */
+.error {
+    color: red;
+}
+
