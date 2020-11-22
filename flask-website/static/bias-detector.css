@@ -16,6 +16,12 @@ img {
     justify-content: center;
 }
 
+.navigation-bar {
+    position: fixed;
+    left: 20%;
+    top: 50%;
+}
+
 a {
     color: inherit;
 }

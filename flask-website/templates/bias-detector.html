@@ -5,34 +5,48 @@
     <link rel="stylesheet" href="../static/bias-detector.css">
 </head>
 <body>
-<div class="bias-container" style="left: 50%; top: 50%;">
-	<div>
-        {% if message and bias %}
-            <h5 style="text-align: center">" {{ message }} "</h5>
-            <h5 style="text-align: center">{{ bias }}</h5>
-        {% endif %}
-		<form class="form">
-			<h1>#Codechella hack.</h1>
-            <input id="submitField"
-                type="text" 
-                name="message" 
-                class="form__field" 
-                placeholder="Tweet or message..."
-            />
-            <button id="submitButton"
-                type="submit" 
-                class="btn btn--primary btn--inside uppercase"
-                formmethod="POST"
-            >Check</button>
-		</form>
+    <!-- Navigation Bar -->
+    <nav class="navigation-bar">
+        <a href="/" class="nav-bubble">Home</a>
+        <br>
+        <a href="/about" class="nav-bubble">About</a>
+        <br>
+        <a href="/bias-detector" class="nav-bubble">Bias Detector</a>
+    </nav>
+
+    <!-- Main container -->
+    <div class="container" style="left: 50%; top: 50%;">
+        <div>
+            <!-- Area to show the machine learning bias prediction -->
+            {% if message and bias %}
+                <h5 style="text-align: center">"{{ message }}"</h5>
+                <h5 style="text-align: center">{{ bias }}</h5>
+            {% endif %}
+
+            <!-- Form that submits the text/tweet -->
+            <form class="form">
+                <h1>Bias Detection</h1>
+                <input id="submitField"
+                    type="text"
+                    name="message"
+                    class="form__field"
+                    placeholder="Tweet or message..."
+                />
+                <button id="submitButton"
+                    type="submit"
+                    class="btn btn--primary btn--inside uppercase"
+                    formmethod="POST"
+                >Check</button>
+            </form>
+        </div>
+
+        <!-- Footer -->
+        <div class="container__item container__item--bottom">
+            <p>Twitter and ML. Design inspired by <a
+                href="//dribbble.com/shots/2989456-Email-input-field"
+                target="_blank"
+            >Daniel Luca</a>.</p>
+        </div>
     </div>
-	
-	<div class="container__item container__item--bottom">
-        <p>Twitter and ML. Design inspired by <a 
-            href="//dribbble.com/shots/2989456-Email-input-field" 
-            target="_blank"
-        >Daniel Luca</a>.</p>
-	</div>
-</div>
 </body>
 </html>
